@@ -3,7 +3,7 @@
 }
 
 body{
-    background-image: url('../Images/zelda-a-collection-of-items-comforters.jpg');
+    background-image: url('../images/crystalPattern.jpg');
 }
 
 .banner{
@@ -52,8 +52,6 @@ body{
 
 #crystals{
     border: solid 4px #4aba91;
-    width:96px;
-    height:96px;
     background-color:  rgba(245, 245, 245, 0.966);
     padding: 0;
 }
