@@ -1,10 +1,9 @@
 $(document).ready(function () {
 
-
     //Initializing data////////
     //game object
     var gameData = {
-        wins: 15,
+        wins: 0,
         lossses: 0,
         userScore: 0,
         computeNumber: 0,
@@ -13,11 +12,12 @@ $(document).ready(function () {
         crystal3: 0,
         crystal4: 0,
     }
+    resetTheGame();
 
     //helper functions////////
     // var tbWin = document.getElementById("win-number");
     // tbWin.textContent = "try";
-    console.log(gameData.wins);
+    // console.log(gameData.wins);
     // $("#win").text(gameData.wins);
     // $("#win-number").html(gameData.wins);
     //resetting the game
@@ -28,6 +28,8 @@ $(document).ready(function () {
         gameData.crystal2 = 0;
         gameData.crystal3 = 0;
         gameData.crystal4 = 0;
+        $("#currentScore").html(gameData.userScore);
+        startTheGame();
     }
     //function that creates random number
     function createRandom(min, max) {
@@ -56,16 +58,47 @@ $(document).ready(function () {
             //we have a winner
             gameData.wins++;
             $("#win-number").text(gameData.wins); //display the win numbers
+            $("#info-bar").html("Nice work! You won!")
             resetTheGame(); // since we have a winner we have to restart the game
         }else if(gameData.userScore > gameData.computeNumber){
             //user has lost
             gameData.lossses++;
             $("#loss-number").html(gameData.lossses);
+            $("#info-bar").html("Sorry... better luck next time...")
             resetTheGame();
         }
     }
 
-    //compute the random number to beat
-    gameData.computeNumber = createRandom(19, 120);
+    function startTheGame(){
+        //compute the random number to beat
+        gameData.computeNumber = createRandom(19, 120);
+        $("#randomBox").text(gameData.computeNumber);
+        createCrystalValues();
+        
+        //Image clicks
+        $("#crystal1").click(function(){
+            gameData.userScore = gameData.userScore + gameData.crystal1;
+            $("#currentScore").html(gameData.userScore);
+            checkScore();
+        });
+
+        $("#crystal2").click(function(){
+            gameData.userScore = gameData.userScore + gameData.crystal2;
+            $("#currentScore").html(gameData.userScore);
+            checkScore();
+        });
+
+        $("#crystal3").click(function(){
+            gameData.userScore = gameData.userScore + gameData.crystal3;
+            $("#currentScore").html(gameData.userScore);
+            checkScore();
+        });
+
+        $("#crystal4").click(function(){
+            gameData.userScore = gameData.userScore + gameData.crystal4;
+            $("#currentScore").html(gameData.userScore);
+            checkScore();
+        });
+    }
 
 });

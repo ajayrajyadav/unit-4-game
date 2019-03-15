@@ -8,7 +8,7 @@ body{
 
 .banner{
     height: 150px;
-    width: 250px;
+    width: 350px;
     align-content: center;
     border: solid 7px #0d9263;
     text-align: center;
@@ -19,6 +19,8 @@ body{
 }
 
 #instructionBox{
+    height: 450px;
+    width: 550px;
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     text-align: left;
@@ -29,16 +31,24 @@ body{
 }
 
 .scoreBox{
+    display: inline-block;
+    /* float: left; */
+    height: 100px;
+    width: 100px;
+    background:  #3BFEFE;
     /* border: solid 4px #4aba91; */
     font: #494b4b;
     font-family: 'Open Sans', sans-serif;
-    /* padding: 1rem 2rem 1rem 1rem; */
-    font-size:  30px;
+    padding: 1rem 2rem 1rem 1rem;
+    font-size:  16px;
     text-align: left;
-    background:  rgba(245, 245, 245, 0.966);
 }
 
 #randomBox{
+    /* display: inline-block; */
+    float: left;
+    height: 100px;
+    width: 250px;
     /* border: solid 4px #4aba91; */
     font: #494b4b;
     font-family: 'Open Sans', sans-serif;
@@ -56,13 +66,31 @@ body{
     padding: 0;
 }
 
+.crystal-image {
+    width: 90px;
+    height: 90px;
+}
 
-#scoreBox{
-    border: solid 4px #4aba91;
+
+#localScore{
+    height: 10px;
+    width: 250px;
+    border: solid 4px #f6f8f7;
     font: #494b4b;
     font-family: 'Open Sans', sans-serif;
-    font-size:  40px;
-    background:  rgba(245, 245, 245, 0.966);
+    /* font-size:  40px; */
+    background: #20A495;
+    padding: 1rem;
+}
+
+#localScoreNumber{
+    height: 100px;
+    width: 250px;
+    border: solid 4px #f7faf9;
+    font: #494b4b;
+    font-family: 'Open Sans', sans-serif;
+    /* font-size:  40px;  */
+    background: #20A495;
     padding: 1rem;
 }
 
