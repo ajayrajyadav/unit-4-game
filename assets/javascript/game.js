@@ -1,6 +1,92 @@
 $(document).ready(function () {
+   //adding banner
+    var bannerDiv = $("<div>");
+    bannerDiv.text("CrystalsCollectors!");
+    $("#main-div").prepend(bannerDiv);
+    bannerDiv.attr("class", "banner");
 
-    //Initializing data////////
+    //adding instructions
+    var txt1 = "<p>You will be given a randomnumber at the start of the game</p>";
+    var txt2 = "<p>There are four crystals below. By clicking on a crystal y ou will add a specific amount of points to your total score.</p>";
+    var txt3 = "<p>You win the game by matching your total score to the random number, you lose the game if your total score goes above the random number.</p>";  // Create text with jQuery
+    var txt4 = "<p>The value of each crystal is hidden from you until you click on it.</p>";         // Create text with DOM
+    var txt5 = "<p>Each time when the game starts, the game will change the values of each crystal</p>";
+    var instructionDiv = $("<div>")
+    // instructionDiv.text("You will be given a randomnumber at the start of the game.");
+    $("#main-div").append(instructionDiv);
+    instructionDiv.attr("id", "instructionBox")
+    instructionDiv.append(txt1,txt2, txt3, txt4, txt5);
+
+    //adding conputeNumber
+    var randomNumberDiv = $("<div>");
+    randomNumberDiv.text("12");
+    randomNumberDiv.attr("id", "randomBox");
+    $("#main-div").append(randomNumberDiv);
+
+    //adding scoreboard
+    var winsTxt = "Wins: 0";
+    var looseTxt = "Losses: 0";
+    var scoreboardDiv = $("<div>");
+    $("#main-div").append(scoreboardDiv);
+    // scoreboardDiv.attr("class", "scoreBox");
+    // scoreboardDiv.append(winsTxt, looseTxt);
+
+    
+    var scoreBoardWinDiv = $("<p>");
+    // scoreBoardWinDiv.attr("class", "scoreBox");
+    scoreBoardWinDiv.text(winsTxt);
+    $("#main-div").append(scoreBoardWinDiv);
+
+    var scoreBoardLoseDiv = $("<p>");
+    // scoreBoardLoseDiv.attr("class", "scoreBox");
+    scoreBoardLoseDiv.text(looseTxt);
+    $("#main-div").append(scoreBoardLoseDiv);
+
+    scoreboardDiv.append(scoreBoardWinDiv);
+    scoreboardDiv.append(scoreBoardLoseDiv);
+    scoreboardDiv.attr("class", "scoreBox");
+    
+
+    //add crystal images
+    var crystalsDiv = $("<div>");
+    // crystalsDiv.attr("class", "clearfix");
+    $("#main-div").append(crystalsDiv);
+
+    var crystal1Image =  $("<img>");
+    crystal1Image.attr("class","crystal-image");
+    crystal1Image.attr("src", "./assets/images/Diamond.png");
+    crystalsDiv.append(crystal1Image);
+
+    var crystal2Image =  $("<img>");
+    crystal2Image.attr("class","crystal-image");
+    crystal2Image.attr("src", "./assets/images/Ruby.png");
+    crystalsDiv.append(crystal2Image);
+
+    var crystal3Image =  $("<img>");
+    crystal3Image.attr("class","crystal-image");
+    crystal3Image.attr("src", "./assets/images/sapphire.png");
+    crystalsDiv.append(crystal3Image);
+
+    var crystal4Image =  $("<img>");
+    crystal4Image.attr("class","crystal-image");
+    crystal4Image.attr("src", "./assets/images/Topaz.png");
+    crystalsDiv.append(crystal4Image);
+
+    //add localscore
+    var localScoreLabelDiv = $("<div>");
+    localScoreLabelDiv.attr("id", "localScore");
+    $("#main-div").append(localScoreLabelDiv);
+    localScoreLabelDiv.text("Your local score is: ");
+
+     //add localscoreNumber
+     var localScoreNumberDiv = $("<div>");
+     localScoreNumberDiv.attr("id", "localScoreNumber");
+     $("#main-div").append(localScoreNumberDiv);
+     localScoreNumberDiv.text("0");
+
+     ////////////Actual gameplay logic/////////
+
+     //Initializing data////////
     //game object
     var gameData = {
         wins: 0,
@@ -28,7 +114,7 @@ $(document).ready(function () {
         gameData.crystal2 = 0;
         gameData.crystal3 = 0;
         gameData.crystal4 = 0;
-        $("#currentScore").html(gameData.userScore);
+        localScoreNumberDiv.html(gameData.userScore);
         startTheGame();
     }
     //function that creates random number
@@ -57,14 +143,18 @@ $(document).ready(function () {
         if (gameData.userScore === gameData.computeNumber) {
             //we have a winner
             gameData.wins++;
-            $("#win-number").text(gameData.wins); //display the win numbers
-            $("#info-bar").html("Nice work! You won!")
+            scoreBoardWinDiv.text("Wins: " + gameData.wins);
+            // scoreboardDiv.append(gameData.wins, gameData.lossses);
+            // $("#win-number").text(gameData.wins); //display the win numbers
+            // $("#info-bar").html("Nice work! You won!")
             resetTheGame(); // since we have a winner we have to restart the game
         }else if(gameData.userScore > gameData.computeNumber){
             //user has lost
             gameData.lossses++;
-            $("#loss-number").html(gameData.lossses);
-            $("#info-bar").html("Sorry... better luck next time...")
+            scoreBoardLoseDiv.text("Losses: " + gameData.lossses);
+            // scoreboardDiv.text(gameData.wins, gameData.lossses);
+            // $("#loss-number").html(gameData.lossses);
+            // $("#info-bar").html("Sorry... better luck next time...")
             resetTheGame();
         }
     }
@@ -76,29 +166,28 @@ $(document).ready(function () {
         createCrystalValues();
         
         //Image clicks
-        $("#crystal1").click(function(){
+        crystal1Image.click(function(){
             gameData.userScore = gameData.userScore + gameData.crystal1;
-            $("#currentScore").html(gameData.userScore);
+            localScoreNumberDiv.html(gameData.userScore);
             checkScore();
         });
 
-        $("#crystal2").click(function(){
+        crystal2Image.click(function(){
             gameData.userScore = gameData.userScore + gameData.crystal2;
-            $("#currentScore").html(gameData.userScore);
+            localScoreNumberDiv.html(gameData.userScore);
             checkScore();
         });
 
-        $("#crystal3").click(function(){
+        crystal3Image.click(function(){
             gameData.userScore = gameData.userScore + gameData.crystal3;
-            $("#currentScore").html(gameData.userScore);
+            localScoreNumberDiv.html(gameData.userScore);
             checkScore();
         });
 
-        $("#crystal4").click(function(){
+        crystal4Image.click(function(){
             gameData.userScore = gameData.userScore + gameData.crystal4;
-            $("#currentScore").html(gameData.userScore);
+            localScoreNumberDiv.html(gameData.userScore);
             checkScore();
         });
     }
-
 });
