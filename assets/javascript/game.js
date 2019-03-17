@@ -12,7 +12,8 @@ $(document).ready(function () {
     var txt4 = "<p>The value of each crystal is hidden from you until you click on it.</p>";         // Create text with DOM
     var txt5 = "<p>Each time when the game starts, the game will change the values of each crystal</p>";
     var instructionDiv = $("<div>")
-    // instructionDiv.text("You will be given a randomnumber at the start of the game.");
+    
+    
     $("#main-div").append(instructionDiv);
     instructionDiv.attr("id", "instructionBox")
     instructionDiv.append(txt1,txt2, txt3, txt4, txt5);
@@ -28,17 +29,12 @@ $(document).ready(function () {
     var looseTxt = "Losses: 0";
     var scoreboardDiv = $("<div>");
     $("#main-div").append(scoreboardDiv);
-    // scoreboardDiv.attr("class", "scoreBox");
-    // scoreboardDiv.append(winsTxt, looseTxt);
-
     
     var scoreBoardWinDiv = $("<p>");
-    // scoreBoardWinDiv.attr("class", "scoreBox");
     scoreBoardWinDiv.text(winsTxt);
     $("#main-div").append(scoreBoardWinDiv);
 
     var scoreBoardLoseDiv = $("<p>");
-    // scoreBoardLoseDiv.attr("class", "scoreBox");
     scoreBoardLoseDiv.text(looseTxt);
     $("#main-div").append(scoreBoardLoseDiv);
 
@@ -49,7 +45,6 @@ $(document).ready(function () {
 
     //add crystal images
     var crystalsDiv = $("<div>");
-    // crystalsDiv.attr("class", "clearfix");
     $("#main-div").append(crystalsDiv);
 
     var crystal1Image =  $("<img>");
@@ -119,7 +114,7 @@ $(document).ready(function () {
 
     //function that creates random numbers for crystals
     function createCrystalValues() {
-        //using do while to ensure that I have no duplicates
+        //using do while to make sure that I have no duplicates
         gameData.crystal1 = createRandom(1, 12);
         do {
             gameData.crystal2 = createRandom(1, 12);
