@@ -101,11 +101,6 @@ $(document).ready(function () {
     resetTheGame();
 
     //helper functions////////
-    // var tbWin = document.getElementById("win-number");
-    // tbWin.textContent = "try";
-    // console.log(gameData.wins);
-    // $("#win").text(gameData.wins);
-    // $("#win-number").html(gameData.wins);
     //resetting the game
     function resetTheGame() {
         gameData.userScore = 0;
@@ -144,17 +139,11 @@ $(document).ready(function () {
             //we have a winner
             gameData.wins++;
             scoreBoardWinDiv.text("Wins: " + gameData.wins);
-            // scoreboardDiv.append(gameData.wins, gameData.lossses);
-            // $("#win-number").text(gameData.wins); //display the win numbers
-            // $("#info-bar").html("Nice work! You won!")
             resetTheGame(); // since we have a winner we have to restart the game
         }else if(gameData.userScore > gameData.computeNumber){
             //user has lost
             gameData.lossses++;
             scoreBoardLoseDiv.text("Losses: " + gameData.lossses);
-            // scoreboardDiv.text(gameData.wins, gameData.lossses);
-            // $("#loss-number").html(gameData.lossses);
-            // $("#info-bar").html("Sorry... better luck next time...")
             resetTheGame();
         }
     }
